@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Создание таблиц
-python database/init_db.py
+python data_generator/init_db.py
 
 # Запуск генератора
-python database/generator.py
+python data_generator/main.py
 
 echo "Генерация завершена."
