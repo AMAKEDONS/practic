@@ -113,7 +113,7 @@ class FioCorrector:
         self.spell.word_frequency.load_words([w.lower() for w in pools["first_names"]])
         self.spell.word_frequency.load_words([w.lower() for w in pools["patronymics"]])
         
-        # Добавляем базовые русские имена (на всякий случай)
+        # Добавляем базовые русские имена
         base_names = [
             'александр', 'сергей', 'дмитрий', 'андрей', 'алексей',
             'владимир', 'никита', 'иван', 'михаил', 'евгений', 'николай',
