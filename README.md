@@ -1,2 +1,0 @@
-# practic
-iT-PRO practitc
