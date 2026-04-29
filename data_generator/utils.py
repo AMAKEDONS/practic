@@ -38,11 +38,17 @@ def save_before_data(records, filename=None):
     Сохраняет данные до исправления
     records: список кортежей (guid, full_name, last_name, first_name, patronymic)
     """
+
+    log_dir = Path("data_generator/logs")
+    log_dir.mkdir(parents=True, exist_ok=True)
+
     if not filename:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         filename = f"before_correction_{timestamp}.csv"
+
+    filepath = log_dir / filename
     
-    with open(filename, 'w', newline='', encoding='utf-8') as f:
+    with open(filepath, 'w', newline='', encoding='utf-8') as f:
         writer = csv.writer(f, delimiter=';')
         writer.writerow(['guid', 'full_name', 'last_name', 'first_name', 'patronymic'])
         writer.writerows(records)
@@ -57,11 +63,17 @@ def save_after_data(records, corrected_guids, filename=None):
     records: список кортежей (guid, full_name, last_name, first_name, patronymic)
     corrected_guids: множество guid которые были исправлены
     """
+
+    log_dir = Path("data_generator/logs")
+    log_dir.mkdir(parents=True, exist_ok=True)
+
     if not filename:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         filename = f"after_correction_{timestamp}.csv"
+
+    filepath = log_dir / filename
     
-    with open(filename, 'w', newline='', encoding='utf-8') as f:
+    with open(filepath, 'w', newline='', encoding='utf-8') as f:
         writer = csv.writer(f, delimiter=';')
         writer.writerow(['guid', 'full_name', 'last_name', 'first_name', 'patronymic', 'was_fixed'])
         
@@ -78,11 +90,17 @@ def save_corrections_log(corrections, filename=None):
     Сохраняет список исправлений
     corrections: список словарей [{'guid': '...', 'before': '...', 'after': '...'}, ...]
     """
+
+    log_dir = Path("data_generator/logs")
+    log_dir.mkdir(parents=True, exist_ok=True)
+
     if not filename:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         filename = f"corrections_{timestamp}.json"
+
+    filepath = log_dir / filename
     
-    with open(filename, 'w', encoding='utf-8') as f:
+    with open(filepath, 'w', encoding='utf-8') as f:
         json.dump(corrections, f, ensure_ascii=False, indent=2)
     
     print(f"[ЛОГ]: Лог исправлений сохранен в {filename}")
